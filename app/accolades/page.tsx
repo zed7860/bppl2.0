@@ -1,0 +1,4 @@
+import {Shell,PageHero} from '@/components/Site';
+const awards=['LEED Platinum Rated','WELL HSR Rated','UNNATA SURAKSHA PURASKARA — National Safety Award','Uttama Suraksha Puraskara — National Safety Council','Commercial Property of the Year','International Property Award — Office Development India','Excellence in Facility Management — Office Building','Karnataka Renewable Energy Award','Achievements in Energy Conservation','Prashmsa Suraksha Puraskara'];
+export default function Page(){return <Shell><PageHero eyebrow="ACCOLADES" title="Recognised for quality, safety and sustainability." text="Milestones that reflect our commitment to responsible development and high-performing workplaces." image="/images/building-2/exterior.jpg"/><section className="section"><div className="awardGrid">{awards.map((x,i)=><div className="award" key={x}><span className="number">{String(i+1).padStart(2,'0')}</span><h3>{x}</h3></div>)}</div></section></Shell>}
+
