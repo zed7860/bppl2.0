@@ -1,9 +1,10 @@
 'use client';
 import Link from 'next/link';
 import {useEffect,useState} from 'react';
-import {ArrowLeft,ArrowRight,Building2,ChevronRight,Facebook,Instagram,Linkedin,Mail,MapPin,MessageCircle,MessageSquareText,Moon,Phone,Sun,Twitter,X} from 'lucide-react';
+import {ArrowLeft,ArrowRight,Building2,ChevronDown,ChevronRight,Facebook,Instagram,Linkedin,Mail,MapPin,MessageCircle,MessageSquareText,Moon,Phone,Sun,Twitter,X} from 'lucide-react';
 
 const nav=[['Home','/'],['About','/about'],['Projects','/projects'],['Sustainability','/sustainability'],['Accolades','/accolades'],['Careers','/careers'],['Contact','/contact']];
+const projectNav=[['All Projects','/projects','Portfolio overview'],['Building 1','/projects/building-1','Operational'],['Building 2','/projects/building-2','Premium workspace'],['Building 3','/projects/building-3','Upcoming'],['Admin Building','/projects/admin-building','Campus administration']];
 const headOffice="Bhoruka Park Pvt. Ltd., 48, Lavelle Road, D' Souza Layout, Ashok Nagar, Bengaluru, Karnataka 560001";
 const techPark='Bhoruka Tech Park, Mahadevapura, Off Outer Ring Road, Bengaluru, Karnataka 560048';
 const headOfficeMap="https://www.google.com/maps/search/?api=1&query=Bhoruka+Park+Pvt.+Ltd.+48+Lavelle+Road+D%27+Souza+Layout+Ashok+Nagar+Bengaluru+Karnataka+560001";
@@ -26,7 +27,7 @@ const homeSlides=[
 function openEnquiry(){window.dispatchEvent(new Event('open-bhoruka-enquiry'))}
 
 export function Header(){
- const [open,setOpen]=useState(false);const [dark,setDark]=useState(false);const [scrolled,setScrolled]=useState(false);
+ const [open,setOpen]=useState(false);const [projectsOpen,setProjectsOpen]=useState(false);const [dark,setDark]=useState(false);const [scrolled,setScrolled]=useState(false);
  useEffect(()=>{const saved=localStorage.getItem('bhoruka-theme')==='dark';setDark(saved);document.documentElement.dataset.theme=saved?'dark':'light'},[]);
  useEffect(()=>{const update=()=>setScrolled(window.scrollY>48);update();window.addEventListener('scroll',update,{passive:true});return()=>window.removeEventListener('scroll',update)},[]);
  useEffect(()=>{document.body.classList.toggle('menuOpen',open);return()=>document.body.classList.remove('menuOpen')},[open]);
@@ -34,7 +35,7 @@ export function Header(){
  return <>
   <header className={scrolled?'header realexaHeader scrolled':'header realexaHeader'}><Link className="brand" href="/" aria-label="Bhoruka Park home"><img className="brandLogo" src="/main-logo-transparent.png" alt="Bhoruka Park Pvt. Limited"/></Link><div className="headerMeta"><span>Premium commercial workplaces</span><small>Bengaluru, India</small></div><div className="headerTools"><button className="headerEnquire" onClick={openEnquiry}>Enquire now <ArrowRight size={16}/></button><button className="menu modernMenu" aria-label={open?'Close navigation':'Open navigation'} aria-expanded={open} aria-controls="main-navigation" onClick={()=>setOpen(!open)}><span/><span/><span/></button></div></header>
   <div className={open?'menuBackdrop show':'menuBackdrop'} onClick={()=>setOpen(false)}/>
-  <aside id="main-navigation" className={open?'menuDrawer open':'menuDrawer'} aria-hidden={!open}><div className="drawerTop"><span>Navigation</span><button onClick={()=>setOpen(false)} aria-label="Close navigation"><X/></button></div><nav>{nav.map(([label,href],index)=><Link key={href} href={href} onClick={()=>setOpen(false)}><span>{String(index+1).padStart(2,'0')}</span>{label}<ChevronRight size={19}/></Link>)}</nav><div className="drawerPreferences"><span>Appearance</span><button className="drawerTheme" onClick={toggleTheme}>{dark?<Sun size={18}/>:<Moon size={18}/>}<strong>{dark?'Use day mode':'Use night mode'}</strong></button></div><SocialLinks className="drawerSocials"/><div className="drawerContact"><p><Mail size={16}/> info@bhorukapark.com</p><p><Phone size={16}/> +91 80 2263 0100</p><button className="primary" onClick={()=>{setOpen(false);openEnquiry()}}>Start an enquiry <ArrowRight size={17}/></button></div></aside>
+  <aside id="main-navigation" className={open?'menuDrawer open':'menuDrawer'} aria-hidden={!open}><div className="drawerTop"><span>Navigation</span><button onClick={()=>setOpen(false)} aria-label="Close navigation"><X/></button></div><nav>{nav.map(([label,href],index)=>label==='Projects'?<div className={projectsOpen?'drawerNavGroup expanded':'drawerNavGroup'} key={href}><button className="drawerNavParent" onClick={()=>setProjectsOpen(value=>!value)} aria-expanded={projectsOpen} aria-controls="project-navigation"><span>{String(index+1).padStart(2,'0')}</span><strong>{label}</strong><ChevronDown size={19}/></button><div id="project-navigation" className="projectSubmenu" hidden={!projectsOpen}>{projectNav.map(([project,projectHref,status])=><Link key={projectHref} href={projectHref} onClick={()=>setOpen(false)}><span>{project}</span><small>{status}</small><ChevronRight size={15}/></Link>)}</div></div>:<Link key={href} href={href} onClick={()=>setOpen(false)}><span>{String(index+1).padStart(2,'0')}</span>{label}<ChevronRight size={19}/></Link>)}</nav><div className="drawerPreferences"><span>Appearance</span><button className="drawerTheme" onClick={toggleTheme}>{dark?<Sun size={18}/>:<Moon size={18}/>}<strong>{dark?'Use day mode':'Use night mode'}</strong></button></div><SocialLinks className="drawerSocials"/><div className="drawerContact"><p><Mail size={16}/> info@bhorukapark.com</p><p><Phone size={16}/> +91 80 2263 0100</p><button className="primary" onClick={()=>{setOpen(false);openEnquiry()}}>Start an enquiry <ArrowRight size={17}/></button></div></aside>
  </>
 }
 
