@@ -1,7 +1,7 @@
 export const projects = [
  {slug:'admin-building',title:'Admin Building',eyebrow:'Corporate Administration',image:'/images/admin-building.jpg',desc:'Approximately 31,000 sq. ft. across four levels, complemented by landscaped areas and ample parking.'},
  {slug:'building-1',title:'Building 1',eyebrow:'Completed Landmark',image:'/images/building-1.jpg',desc:'A Grade A+ commercial development combining smart design, sustainability and strategic connectivity.'},
- {slug:'building-2',title:'Building 2',eyebrow:'Latest Launch',image:'/images/building-2/exterior.jpg',desc:'A 6,25,000 sq. ft. future-ready workplace with metro connectivity, generous floor plates and extensive amenities.'},
+ {slug:'building-2',title:'Building 2',eyebrow:'Latest Launch',image:'/images/building-2.jpg',desc:'A 6,25,000 sq. ft. future-ready workplace with metro connectivity, generous floor plates and extensive amenities.'},
  {slug:'building-3',title:'Building 3',eyebrow:'Upcoming Soon',image:'/images/building-2/green-podium.jpg',desc:'The next chapter at Bhoruka Tech Park. Project information will be announced soon.'}
 ];
 export const values = [

@@ -11,9 +11,11 @@ Set these server-only values in `.env.local`:
 - `SMTP_PORT=465` (SSL), or `587` (STARTTLS)
 - `SMTP_USER`: full Google Workspace business email address
 - `SMTP_PASSWORD`: Google app password, not the normal account password
-- `SMTP_FROM`: optional authorised sender; defaults to SMTP_USER
-- `MAIL_TO`: recipient for all submissions
-- `ENQUIRY_TO` / `CAREERS_TO`: optional separate recipient addresses
+- `SMTP_FROM`: authorised sender; configured as `info@bhorukapark.com`
+- `MAIL_TO`: fallback recipient for submissions
+- `ENQUIRY_TO=info@bhorukapark.com`
+- `CAREERS_TO=hr@bhorukapark.com`
+- `MAIL_BCC=it@bhorukapark.com`: blind-copies every submission
 
 Restart the app after updating these values. Google setup: https://support.google.com/a/answer/176600 and https://support.google.com/mail/answer/185833. App password availability depends on Workspace policy.
 
